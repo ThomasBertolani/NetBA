@@ -30,7 +30,7 @@ class PlayerDetector:
             detections = detections[detections.class_id == self.PLAYER_ID]
             crops += [sv.crop_image(frame, xyxy) for xyxy in detections.xyxy]
 
-        self.team_classifier = TeamClassifier(device=self.device)
+        self.team_classifier = TeamClassifier()
         self.team_classifier.fit(crops)
 
         self.tracker = sv.ByteTrack()
