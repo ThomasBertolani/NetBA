@@ -1,14 +1,21 @@
-# NetBA
+# NetBA: Computer Vision for Basketball game analysis
 
-This project focuses on player tracking and visual analysis in NBA basketball games using computer vision techniques. 
+**NetBA** is a comprehensive computer vision system designed to digitize NBA broadcast footage. It transforms raw video into structured tactical data by detecting players, recognizing team affiliations and jersey numbers, and projecting movements onto a standardized 2D court view.
 
-The main objectives are:
+## 🎥 Demo
 
-- **Player Detection & Tracking**: Identify and follow the players on the court throughout the game footage, even when the camera angle changes.
-- **Homographic Court Transformation**: Generate a bird's eye view of the court (top-down perspective) in real-time to visualize player positioning more intuitively.
-- **Statistical Analysis**: Analyze gameplay dynamics and extract meaningful statistics such as player movement patterns, heatmaps, and positioning metrics.
+![Demo Output](demo/detection_demo.gif)
+![Demo Output](demo/radar_demo.gif)
 
-The project leverages image rectification, homography estimation, and tracking algorithms to achieve these goals.
+
+## 🚀 Key Features & Methodology
+
+The project leverages state-of-the-art algorithms to achieve high-fidelity analysis:
+
+* **Player Detection & Tracking**: Utilizes **YOLOv11** for detection and **ByteTrack** for robust multi-object tracking, handling occlusions and fast motion.
+* **Team Classification**: Implements a lightweight **HSV Color Histogram + K-Means** clustering pipeline to distinguish teams in real-time, robust to white jersey variations.
+* **Jersey Number Recognition**: Integrates **PaddleOCRv5** with a custom **Memory-Based Tracking Mechanism**. This solves the occlusion problem by linking recognized numbers to player IDs over time.
+* **Homographic Court Transformation**: Generates a live "bird's eye view" (tactical board) by detecting 33 standardized court keypoints using **YOLOv8-Pose**.
 
 ## Installation
 
@@ -18,7 +25,7 @@ Before installing the project dependencies, make sure to install **PaddlePaddle*
 
    Follow the official installation guide based on your system and environment:
 
-   👉 [PaddlePaddle Installation Guide](https://www.paddlepaddle.org.cn/en/install/quick?docurl=undefined)
+   👉 [PaddlePaddle Installation Guide](https://www.paddlepaddle.org.cn/en/install/quick)
 
 2. **Install project dependencies**
 
@@ -27,6 +34,16 @@ Before installing the project dependencies, make sure to install **PaddlePaddle*
    ```bash
    pip install -r requirements.txt
    ```
+
+3. **Install and Initialize Git LFS**
+
+   This project includes large model files (e.g., YOLO and PaddleOCR), which are managed using **Git LFS**.
+   
+   ```bash
+   sudo apt install git-lfs
+   git lfs install
+   ```
+
 
 ## 🚀 Running the Project
 
@@ -46,37 +63,7 @@ The program produces two annotated videos:
 
 These will be saved in the `output/` directory after processing.
 
-## Model Files & Git LFS
-
-This project includes large model files (e.g., YOLO and PaddleOCR), which are managed using **Git LFS**.
-
-### 🛠️ Cloning the Repository
-
-If you're cloning this repository, make sure to install Git LFS **before** working with the model files:
-
-1. **Install Git LFS**
-
-   - **Ubuntu/Debian:** `sudo apt install git-lfs`
-   - **macOS (Homebrew):** `brew install git-lfs`
-   - **Windows:** https://git-lfs.github.com
-
-2. **Initialize Git LFS**
-
-   After cloning the repo, run:
-
-   ```bash
-   git lfs install
-   ```
-
-This ensures all large model files are properly downloaded. Otherwise, you may see placeholder text files instead of actual models.
-
-## ⚡ Optional: Speed Up Builds with ccache
-
-Installing `ccache` can significantly reduce build times.
-
-### Quick Install
-
-- **Ubuntu/Debian:** `sudo apt install ccache`
-- **macOS (Homebrew):** `brew install ccache`
-
-You can safely ignore any warnings if it's not installed, but it's recommended for faster repeated builds.
+## 👤 Authors
+* **[Thomas Bertolani](https://github.com/ThomasBertolani)**
+* **[Alessia Corni](https://github.com/alessiacorni)**
+* **[Alessandro Paludetto](https://github.com/palu46)**
