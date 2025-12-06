@@ -13,7 +13,7 @@
 The project leverages state-of-the-art algorithms to achieve high-fidelity analysis:
 
 * **Player Detection & Tracking**: Utilizes **YOLOv11** for detection and **ByteTrack** for robust multi-object tracking, handling occlusions and fast motion.
-* **Team Classification**: Implements a lightweight **HSV Color Histogram + K-Means** clustering pipeline to distinguish teams in real-time, robust to white jersey variations.
+* **Team Classification**: Implements a lightweight **HSV Color Histogram + K-Means** clustering pipeline to distinguish teams.
 * **Jersey Number Recognition**: Integrates **PaddleOCRv5** with a custom **Memory-Based Tracking Mechanism**. This solves the occlusion problem by linking recognized numbers to player IDs over time.
 * **Homographic Court Transformation**: Generates a live "bird's eye view" (tactical board) by detecting 33 standardized court keypoints using **YOLOv8-Pose**.
 
